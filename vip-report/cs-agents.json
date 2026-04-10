@@ -1,0 +1,45 @@
+{
+  "report": "CS Agent Global Assignments",
+  "generated": "2026-04-10",
+  "total_agents": 64,
+  "tier_definitions": {
+    "Platinum": {"sla_hours": 1, "dedicated_agent": true, "quarterly_review": true, "min_monthly_spend": 50000},
+    "Gold": {"sla_hours": 4, "dedicated_agent": true, "quarterly_review": true, "min_monthly_spend": 10000},
+    "Silver": {"sla_hours": 24, "dedicated_agent": false, "quarterly_review": false, "min_monthly_spend": 1000}
+  },
+  "follow_the_sun": {
+    "UTC_00_06": {"primary_region": "AP", "backup_region": "MEA"},
+    "UTC_06_12": {"primary_region": "MEA", "backup_region": "EU"},
+    "UTC_12_18": {"primary_region": "EU", "backup_region": "NA"},
+    "UTC_18_00": {"primary_region": "NA", "backup_region": "SA"}
+  },
+  "escalation_chain": [
+    {"level": 1, "role": "Assigned CS Agent", "scope": "Regional"},
+    {"level": 2, "role": "Regional Lead", "scope": "Regional"},
+    {"level": 3, "role": "Global VIP Operations Manager", "scope": "Global"},
+    {"level": 4, "role": "C-Suite Account Director", "scope": "Global"}
+  ],
+  "kpis": {
+    "current_q1_2026": {
+      "avg_first_response_hours": 3.2,
+      "csat_score_pct": 87,
+      "vip_churn_rate_pct": 4.1,
+      "cross_regional_resolution_pct": 68,
+      "agent_utilization_pct": 74
+    },
+    "target_q4_2026": {
+      "avg_first_response_hours": 2.0,
+      "csat_score_pct": 92,
+      "vip_churn_rate_pct": 2.5,
+      "cross_regional_resolution_pct": 85,
+      "agent_utilization_pct": 82
+    }
+  },
+  "summary_by_region": [
+    {"region": "NA", "agents": 14, "vip_accounts": 340, "avg_accounts_per_agent": 24.3},
+    {"region": "SA", "agents": 12, "vip_accounts": 215, "avg_accounts_per_agent": 17.9},
+    {"region": "EU", "agents": 20, "vip_accounts": 390, "avg_accounts_per_agent": 19.5},
+    {"region": "AP", "agents": 13, "vip_accounts": 220, "avg_accounts_per_agent": 16.9},
+    {"region": "MEA", "agents": 5, "vip_accounts": 75, "avg_accounts_per_agent": 15.0}
+  ]
+}

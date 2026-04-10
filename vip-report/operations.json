@@ -1,0 +1,26 @@
+{
+  "report": "Active Operations by Country",
+  "generated": "2026-04-10",
+  "total_operations": 18,
+  "operations": [
+    {"op_id": "NA-US-001", "region": "NA", "country": "USA", "city": "Houston", "status": "active", "vip_accounts": 180, "agents_assigned": 7, "operation_lead": "Marcus Thompson"},
+    {"op_id": "NA-CA-001", "region": "NA", "country": "Canada", "city": "Toronto", "status": "active", "vip_accounts": 105, "agents_assigned": 5, "operation_lead": "Emily Chen"},
+    {"op_id": "NA-MX-001", "region": "NA", "country": "Mexico", "city": "Mexico City", "status": "active", "vip_accounts": 55, "agents_assigned": 2, "operation_lead": "Roberto Vega"},
+    {"op_id": "SA-BR-001", "region": "SA", "country": "Brazil", "city": "São Paulo", "status": "active", "vip_accounts": 90, "agents_assigned": 5, "operation_lead": "Lucas Ferreira"},
+    {"op_id": "SA-AR-001", "region": "SA", "country": "Argentina", "city": "Buenos Aires", "status": "active", "vip_accounts": 60, "agents_assigned": 3, "operation_lead": "Valentina Cruz"},
+    {"op_id": "SA-CO-001", "region": "SA", "country": "Colombia", "city": "Bogotá", "status": "active", "vip_accounts": 40, "agents_assigned": 2, "operation_lead": "Diego Ramírez"},
+    {"op_id": "SA-CL-001", "region": "SA", "country": "Chile", "city": "Santiago", "status": "active", "vip_accounts": 25, "agents_assigned": 2, "operation_lead": "Felipe Herrera"},
+    {"op_id": "EU-GB-001", "region": "EU", "country": "United Kingdom", "city": "London", "status": "active", "vip_accounts": 95, "agents_assigned": 4, "operation_lead": "Oliver Whitfield"},
+    {"op_id": "EU-DE-001", "region": "EU", "country": "Germany", "city": "Berlin", "status": "active", "vip_accounts": 80, "agents_assigned": 4, "operation_lead": "Charlotte Müller"},
+    {"op_id": "EU-ES-001", "region": "EU", "country": "Spain", "city": "Madrid", "status": "active", "vip_accounts": 65, "agents_assigned": 3, "operation_lead": "Alejandro García"},
+    {"op_id": "EU-FR-001", "region": "EU", "country": "France", "city": "Paris", "status": "active", "vip_accounts": 70, "agents_assigned": 3, "operation_lead": "Sophie Leclerc"},
+    {"op_id": "EU-IT-001", "region": "EU", "country": "Italy", "city": "Milan", "status": "active", "vip_accounts": 45, "agents_assigned": 3, "operation_lead": "Marco Ricci"},
+    {"op_id": "EU-NL-001", "region": "EU", "country": "Netherlands", "city": "Amsterdam", "status": "active", "vip_accounts": 35, "agents_assigned": 3, "operation_lead": "Lars van den Berg"},
+    {"op_id": "AP-JP-001", "region": "AP", "country": "Japan", "city": "Tokyo", "status": "active", "vip_accounts": 75, "agents_assigned": 4, "operation_lead": "Kenji Tanaka"},
+    {"op_id": "AP-AU-001", "region": "AP", "country": "Australia", "city": "Sydney", "status": "active", "vip_accounts": 70, "agents_assigned": 4, "operation_lead": "Lachlan Murphy"},
+    {"op_id": "AP-SG-001", "region": "AP", "country": "Singapore", "city": "Singapore", "status": "active", "vip_accounts": 50, "agents_assigned": 3, "operation_lead": "Wei Lim"},
+    {"op_id": "AP-IN-001", "region": "AP", "country": "India", "city": "Mumbai", "status": "active", "vip_accounts": 25, "agents_assigned": 2, "operation_lead": "Anika Sharma"},
+    {"op_id": "MEA-AE-001", "region": "MEA", "country": "UAE", "city": "Dubai", "status": "active", "vip_accounts": 50, "agents_assigned": 3, "operation_lead": "Yousef Al-Rashidi"},
+    {"op_id": "MEA-ZA-001", "region": "MEA", "country": "South Africa", "city": "Johannesburg", "status": "active", "vip_accounts": 25, "agents_assigned": 2, "operation_lead": "Sipho Dlamini"}
+  ]
+}

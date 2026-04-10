@@ -1,0 +1,127 @@
+{
+  "report": "VIP International Team — Unified Roster",
+  "generated": "2026-04-10",
+  "total_agents": 64,
+  "total_vip_accounts": 1240,
+  "regions": [
+    {
+      "id": "NA",
+      "name": "North America",
+      "lead": "Marcus Thompson",
+      "lead_location": "Houston, TX",
+      "countries": ["USA", "Canada", "Mexico"],
+      "vip_accounts": 340,
+      "agents_count": 14,
+      "agents": [
+        {"id": "AG-NA-001", "name": "Marcus Thompson", "city": "Houston", "country": "USA", "tier": ["Platinum", "Gold"], "accounts": 28, "role": "Regional Lead"},
+        {"id": "AG-NA-002", "name": "Sarah Lindberg", "city": "New York", "country": "USA", "tier": ["Platinum"], "accounts": 22, "role": "Senior CS Agent"},
+        {"id": "AG-NA-003", "name": "James Okafor", "city": "Chicago", "country": "USA", "tier": ["Gold", "Silver"], "accounts": 25, "role": "CS Agent"},
+        {"id": "AG-NA-004", "name": "Priya Nair", "city": "San Francisco", "country": "USA", "tier": ["Platinum", "Gold"], "accounts": 24, "role": "Senior CS Agent"},
+        {"id": "AG-NA-005", "name": "Carlos Mendoza", "city": "Miami", "country": "USA", "tier": ["Gold", "Silver"], "accounts": 26, "role": "CS Agent"},
+        {"id": "AG-NA-006", "name": "Emily Chen", "city": "Toronto", "country": "Canada", "tier": ["Platinum", "Gold"], "accounts": 25, "role": "Senior CS Agent"},
+        {"id": "AG-NA-007", "name": "Liam Beauchamp", "city": "Montreal", "country": "Canada", "tier": ["Gold", "Silver"], "accounts": 22, "role": "CS Agent"},
+        {"id": "AG-NA-008", "name": "Natalie Reyes", "city": "Vancouver", "country": "Canada", "tier": ["Gold"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-NA-009", "name": "David Kim", "city": "Ottawa", "country": "Canada", "tier": ["Silver"], "accounts": 18, "role": "CS Agent"},
+        {"id": "AG-NA-010", "name": "Sofia Morales", "city": "Calgary", "country": "Canada", "tier": ["Gold", "Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-NA-011", "name": "Roberto Vega", "city": "Mexico City", "country": "Mexico", "tier": ["Gold", "Silver"], "accounts": 28, "role": "Senior CS Agent"},
+        {"id": "AG-NA-012", "name": "Ana Flores", "city": "Guadalajara", "country": "Mexico", "tier": ["Silver"], "accounts": 27, "role": "CS Agent"},
+        {"id": "AG-NA-013", "name": "Miguel Santos", "city": "Monterrey", "country": "Mexico", "tier": ["Silver"], "accounts": 0, "role": "CS Agent"},
+        {"id": "AG-NA-014", "name": "Jessica Park", "city": "Los Angeles", "country": "USA", "tier": ["Platinum"], "accounts": 15, "role": "CS Agent"}
+      ]
+    },
+    {
+      "id": "SA",
+      "name": "South America",
+      "lead": "Valentina Cruz",
+      "lead_location": "Buenos Aires",
+      "countries": ["Brazil", "Argentina", "Colombia", "Chile"],
+      "vip_accounts": 215,
+      "agents_count": 12,
+      "agents": [
+        {"id": "AG-SA-001", "name": "Valentina Cruz", "city": "Buenos Aires", "country": "Argentina", "tier": ["Platinum", "Gold"], "accounts": 22, "role": "Regional Lead"},
+        {"id": "AG-SA-002", "name": "Lucas Ferreira", "city": "São Paulo", "country": "Brazil", "tier": ["Platinum"], "accounts": 20, "role": "Senior CS Agent"},
+        {"id": "AG-SA-003", "name": "Beatriz Oliveira", "city": "Rio de Janeiro", "country": "Brazil", "tier": ["Gold", "Silver"], "accounts": 18, "role": "CS Agent"},
+        {"id": "AG-SA-004", "name": "Rafael Souza", "city": "Brasília", "country": "Brazil", "tier": ["Gold"], "accounts": 18, "role": "CS Agent"},
+        {"id": "AG-SA-005", "name": "Camila Torres", "city": "São Paulo", "country": "Brazil", "tier": ["Silver"], "accounts": 17, "role": "CS Agent"},
+        {"id": "AG-SA-006", "name": "Rodrigo Gómez", "city": "Buenos Aires", "country": "Argentina", "tier": ["Gold", "Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-SA-007", "name": "Martina López", "city": "Córdoba", "country": "Argentina", "tier": ["Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-SA-008", "name": "Diego Ramírez", "city": "Bogotá", "country": "Colombia", "tier": ["Gold", "Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-SA-009", "name": "Mariana Ruiz", "city": "Medellín", "country": "Colombia", "tier": ["Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-SA-010", "name": "Felipe Herrera", "city": "Santiago", "country": "Chile", "tier": ["Gold", "Silver"], "accounts": 13, "role": "CS Agent"},
+        {"id": "AG-SA-011", "name": "Daniela Pizarro", "city": "Valparaíso", "country": "Chile", "tier": ["Silver"], "accounts": 12, "role": "CS Agent"},
+        {"id": "AG-SA-012", "name": "Andrés Castillo", "city": "Lima", "country": "Peru", "tier": ["Gold"], "accounts": 0, "role": "Support Agent"}
+      ]
+    },
+    {
+      "id": "EU",
+      "name": "Europe",
+      "lead": "Charlotte Müller",
+      "lead_location": "Berlin",
+      "countries": ["United Kingdom", "Germany", "Spain", "France", "Italy", "Netherlands"],
+      "vip_accounts": 390,
+      "agents_count": 20,
+      "agents": [
+        {"id": "AG-EU-001", "name": "Charlotte Müller", "city": "Berlin", "country": "Germany", "tier": ["Platinum", "Gold"], "accounts": 24, "role": "Regional Lead"},
+        {"id": "AG-EU-002", "name": "Hans Becker", "city": "Frankfurt", "country": "Germany", "tier": ["Platinum"], "accounts": 22, "role": "Senior CS Agent"},
+        {"id": "AG-EU-003", "name": "Lena Hoffmann", "city": "Munich", "country": "Germany", "tier": ["Gold", "Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-EU-004", "name": "Tobias Schneider", "city": "Hamburg", "country": "Germany", "tier": ["Gold"], "accounts": 14, "role": "CS Agent"},
+        {"id": "AG-EU-005", "name": "Oliver Whitfield", "city": "London", "country": "United Kingdom", "tier": ["Platinum", "Gold"], "accounts": 26, "role": "Senior CS Agent"},
+        {"id": "AG-EU-006", "name": "Emma Clarke", "city": "Manchester", "country": "United Kingdom", "tier": ["Gold", "Silver"], "accounts": 25, "role": "CS Agent"},
+        {"id": "AG-EU-007", "name": "James Harrington", "city": "Edinburgh", "country": "United Kingdom", "tier": ["Gold"], "accounts": 24, "role": "CS Agent"},
+        {"id": "AG-EU-008", "name": "Sophie Leclerc", "city": "Paris", "country": "France", "tier": ["Platinum"], "accounts": 20, "role": "Senior CS Agent"},
+        {"id": "AG-EU-009", "name": "Antoine Dubois", "city": "Lyon", "country": "France", "tier": ["Gold", "Silver"], "accounts": 26, "role": "CS Agent"},
+        {"id": "AG-EU-010", "name": "Isabelle Bernard", "city": "Marseille", "country": "France", "tier": ["Silver"], "accounts": 24, "role": "CS Agent"},
+        {"id": "AG-EU-011", "name": "Alejandro García", "city": "Madrid", "country": "Spain", "tier": ["Platinum", "Gold"], "accounts": 22, "role": "Senior CS Agent"},
+        {"id": "AG-EU-012", "name": "Carmen Vidal", "city": "Barcelona", "country": "Spain", "tier": ["Gold", "Silver"], "accounts": 22, "role": "CS Agent"},
+        {"id": "AG-EU-013", "name": "Luis Romero", "city": "Valencia", "country": "Spain", "tier": ["Silver"], "accounts": 21, "role": "CS Agent"},
+        {"id": "AG-EU-014", "name": "Marco Ricci", "city": "Milan", "country": "Italy", "tier": ["Platinum", "Gold"], "accounts": 18, "role": "Senior CS Agent"},
+        {"id": "AG-EU-015", "name": "Giulia Ferrari", "city": "Rome", "country": "Italy", "tier": ["Gold", "Silver"], "accounts": 16, "role": "CS Agent"},
+        {"id": "AG-EU-016", "name": "Francesca Bruno", "city": "Naples", "country": "Italy", "tier": ["Silver"], "accounts": 11, "role": "CS Agent"},
+        {"id": "AG-EU-017", "name": "Lars van den Berg", "city": "Amsterdam", "country": "Netherlands", "tier": ["Platinum", "Gold"], "accounts": 14, "role": "Senior CS Agent"},
+        {"id": "AG-EU-018", "name": "Anke de Vries", "city": "Rotterdam", "country": "Netherlands", "tier": ["Gold", "Silver"], "accounts": 12, "role": "CS Agent"},
+        {"id": "AG-EU-019", "name": "Pieter Smits", "city": "The Hague", "country": "Netherlands", "tier": ["Silver"], "accounts": 9, "role": "CS Agent"},
+        {"id": "AG-EU-020", "name": "Natasha Kovač", "city": "Zurich", "country": "Switzerland", "tier": ["Platinum"], "accounts": 0, "role": "Support Agent"}
+      ]
+    },
+    {
+      "id": "AP",
+      "name": "Asia-Pacific",
+      "lead": "Kenji Tanaka",
+      "lead_location": "Tokyo",
+      "countries": ["Japan", "Australia", "Singapore", "India"],
+      "vip_accounts": 220,
+      "agents_count": 13,
+      "agents": [
+        {"id": "AG-AP-001", "name": "Kenji Tanaka", "city": "Tokyo", "country": "Japan", "tier": ["Platinum", "Gold"], "accounts": 22, "role": "Regional Lead"},
+        {"id": "AG-AP-002", "name": "Yuki Sato", "city": "Osaka", "country": "Japan", "tier": ["Gold", "Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-AP-003", "name": "Hana Yamamoto", "city": "Kyoto", "country": "Japan", "tier": ["Gold"], "accounts": 18, "role": "CS Agent"},
+        {"id": "AG-AP-004", "name": "Ryota Ito", "city": "Tokyo", "country": "Japan", "tier": ["Silver"], "accounts": 15, "role": "CS Agent"},
+        {"id": "AG-AP-005", "name": "Lachlan Murphy", "city": "Sydney", "country": "Australia", "tier": ["Platinum", "Gold"], "accounts": 20, "role": "Senior CS Agent"},
+        {"id": "AG-AP-006", "name": "Chloe Anderson", "city": "Melbourne", "country": "Australia", "tier": ["Gold", "Silver"], "accounts": 20, "role": "CS Agent"},
+        {"id": "AG-AP-007", "name": "Noah Williams", "city": "Brisbane", "country": "Australia", "tier": ["Gold"], "accounts": 18, "role": "CS Agent"},
+        {"id": "AG-AP-008", "name": "Mia Thompson", "city": "Perth", "country": "Australia", "tier": ["Silver"], "accounts": 12, "role": "CS Agent"},
+        {"id": "AG-AP-009", "name": "Wei Lim", "city": "Singapore", "country": "Singapore", "tier": ["Platinum", "Gold"], "accounts": 20, "role": "Senior CS Agent"},
+        {"id": "AG-AP-010", "name": "Jasmine Tan", "city": "Singapore", "country": "Singapore", "tier": ["Gold", "Silver"], "accounts": 18, "role": "CS Agent"},
+        {"id": "AG-AP-011", "name": "Ryan Ng", "city": "Singapore", "country": "Singapore", "tier": ["Silver"], "accounts": 12, "role": "CS Agent"},
+        {"id": "AG-AP-012", "name": "Anika Sharma", "city": "Mumbai", "country": "India", "tier": ["Platinum", "Gold"], "accounts": 15, "role": "Senior CS Agent"},
+        {"id": "AG-AP-013", "name": "Vikram Patel", "city": "Bangalore", "country": "India", "tier": ["Gold", "Silver"], "accounts": 10, "role": "CS Agent"}
+      ]
+    },
+    {
+      "id": "MEA",
+      "name": "Middle East & Africa",
+      "lead": "Yousef Al-Rashidi",
+      "lead_location": "Dubai",
+      "countries": ["UAE", "South Africa"],
+      "vip_accounts": 75,
+      "agents_count": 5,
+      "agents": [
+        {"id": "AG-MEA-001", "name": "Yousef Al-Rashidi", "city": "Dubai", "country": "UAE", "tier": ["Platinum", "Gold"], "accounts": 22, "role": "Regional Lead"},
+        {"id": "AG-MEA-002", "name": "Fatima Al-Zahrawi", "city": "Abu Dhabi", "country": "UAE", "tier": ["Platinum"], "accounts": 18, "role": "Senior CS Agent"},
+        {"id": "AG-MEA-003", "name": "Omar Hassan", "city": "Dubai", "country": "UAE", "tier": ["Gold", "Silver"], "accounts": 10, "role": "CS Agent"},
+        {"id": "AG-MEA-004", "name": "Sipho Dlamini", "city": "Johannesburg", "country": "South Africa", "tier": ["Gold", "Silver"], "accounts": 14, "role": "Senior CS Agent"},
+        {"id": "AG-MEA-005", "name": "Lerato Mokoena", "city": "Cape Town", "country": "South Africa", "tier": ["Silver"], "accounts": 11, "role": "CS Agent"}
+      ]
+    }
+  ]
+}
