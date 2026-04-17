@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP Operations Suite — Executive Presentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#070B14;--navy-2:#0C1220;--navy-3:#111827;--navy-4:#1a2235;--amber:#D97706;--amber-light:#F59E0B;--amber-glow:rgba(217,119,6,0.15);--lime:#65A30D;--lime-light:#84CC16;--lime-glow:rgba(101,163,13,0.12);--teal:#0891B2;--teal-light:#22D3EE;--teal-glow:rgba(8,145,178,0.12);--cyan:#00d2ff;--cyan-glow:rgba(0,210,255,0.25);--white:#F8FAFC;--gray-1:#94A3B8;--gray-2:#475569;--gray-3:#1E293B;--glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{background:var(--navy);color:var(--white);font-family:'IBM Plex Sans',sans-serif;height:100%;overflow:hidden;}
+.deck{width:100vw;height:100vh;position:relative;overflow:hidden;}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:52px 72px;opacity:0;transform:translateX(60px);pointer-events:none;transition:opacity 0.55s cubic-bezier(.4,0,.2,1),transform 0.55s cubic-bezier(.4,0,.2,1);overflow:hidden;}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all;}
+.slide.exit{opacity:0;transform:translateX(-60px);}
+.nav{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:100;display:flex;align-items:center;gap:20px;background:var(--glass);border:1px solid var(--glass-border);backdrop-filter:blur(20px);border-radius:50px;padding:10px 24px;}
+.nav button{background:none;border:none;color:var(--gray-1);font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;padding:6px 16px;border-radius:20px;transition:all 0.2s;letter-spacing:0.05em;}
+.nav button:hover{color:var(--amber);}
+.nav button.prev,.nav button.next{color:var(--white);background:var(--glass);border:1px solid var(--glass-border);}
+.nav button.prev:hover,.nav button.next:hover{border-color:var(--amber);color:var(--amber);}
+.slide-counter{color:var(--amber);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.1em;}
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--amber-light));transition:width 0.4s ease;z-index:200;box-shadow:0 0 8px var(--amber);}
+.dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:7px;z-index:100;}
+.dot{width:5px;height:5px;border-radius:3px;background:var(--gray-2);cursor:pointer;transition:all 0.3s;}
+.dot.active{background:var(--amber);height:20px;box-shadow:0 0 6px var(--amber);}
+.noise{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.syne{font-family:'Syne',sans-serif;}
+.badge{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;padding:4px 10px;border-radius:4px;font-weight:500;}
+.badge-amber{background:rgba(217,119,6,0.15);color:var(--amber-light);border:1px solid rgba(217,119,6,0.3);}
+.badge-lime{background:rgba(101,163,13,0.15);color:var(--lime-light);border:1px solid rgba(101,163,13,0.3);}
+.badge-teal{background:rgba(8,145,178,0.15);color:var(--teal-light);border:1px solid rgba(8,145,178,0.3);}
+.badge-cyan{background:rgba(0,210,255,0.1);color:var(--cyan);border:1px solid rgba(0,210,255,0.3);}
+.badge-red{background:rgba(239,68,68,0.12);color:#F87171;border:1px solid rgba(239,68,68,0.25);}
+.dot-live{width:6px;height:6px;border-radius:50%;background:var(--lime-light);animation:pulse-live 1.5s ease-in-out infinite;}
+@keyframes pulse-live{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(132,204,22,0.4);}50%{opacity:0.7;box-shadow:0 0 0 4px rgba(132,204,22,0);}}
+.dot-live-cyan{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse-cyan 1.5s ease-in-out infinite;}
+@keyframes pulse-cyan{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,210,255,0.5);}50%{opacity:0.7;box-shadow:0 0 0 4px rgba(0,210,255,0);}}
+.card{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;backdrop-filter:blur(16px);padding:24px;}
+.label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.15em;color:var(--gray-1);text-transform:uppercase;}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+.hero-orb-1{width:500px;height:500px;background:rgba(217,119,6,0.08);top:-100px;left:-150px;}
+.hero-orb-2{width:400px;height:400px;background:rgba(8,145,178,0.06);bottom:-80px;right:-100px;}
+.hero-orb-3{width:300px;height:300px;background:rgba(101,163,13,0.05);bottom:100px;left:30%;}
+.hero-icons{display:flex;gap:40px;align-items:center;margin-bottom:40px;justify-content:center;}
+.hero-icon{width:80px;height:80px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;}
+.hero-icon-vsp{background:rgba(217,119,6,0.12);border:1px solid rgba(217,119,6,0.3);box-shadow:0 0 30px rgba(217,119,6,0.1);}
+.hero-icon-vcs{background:rgba(8,145,178,0.12);border:1px solid rgba(8,145,178,0.3);box-shadow:0 0 30px rgba(8,145,178,0.1);}
+.hero-icon-vpt{background:rgba(101,163,13,0.12);border:1px solid rgba(101,163,13,0.3);box-shadow:0 0 30px rgba(101,163,13,0.1);}
+.hero-icon-vic{background:rgba(0,210,255,0.1);border:1px solid rgba(0,210,255,0.3);box-shadow:0 0 30px rgba(0,210,255,0.12);}
+.hero-icon::after{content:'';position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);width:1px;height:20px;background:linear-gradient(to bottom,rgba(255,255,255,0.15),transparent);}
+.connector-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--amber),transparent);opacity:0.5;}
+.hero-title{font-family:'Syne',sans-serif;font-size:68px;font-weight:800;line-height:1;letter-spacing:-0.02em;background:linear-gradient(135deg,#fff 40%,var(--amber-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:18px;}
+.hero-subtitle{font-family:'IBM Plex Sans',sans-serif;font-size:17px;color:var(--gray-1);font-weight:300;max-width:600px;line-height:1.7;margin:0 auto 36px;}
+.hero-tagline{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(217,119,6,0.6);letter-spacing:0.2em;}
+.hero-stats{display:flex;gap:44px;margin-top:48px;justify-content:center;}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-family:'Syne',sans-serif;font-size:34px;font-weight:700;color:var(--amber-light);}
+.hero-stat-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:var(--gray-1);margin-top:4px;}
+.hero-stat-divider{width:1px;background:var(--glass-border);align-self:stretch;}
+#slide-01{justify-content:center;align-items:center;text-align:center;}
+#slide-02{justify-content:center;}
+.slide-header{margin-bottom:36px;}
+.slide-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--amber);margin-bottom:10px;}
+.slide-title{font-family:'Syne',sans-serif;font-size:40px;font-weight:700;line-height:1.15;letter-spacing:-0.01em;}
+.slide-title span{color:var(--amber-light);}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.problem-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:22px;position:relative;overflow:hidden;}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#EF4444,transparent);}
+.problem-icon{font-size:22px;margin-bottom:14px;}
+.problem-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;color:#F87171;margin-bottom:8px;}
+.problem-desc{font-size:13px;color:var(--gray-1);line-height:1.6;font-weight:300;}
+.problem-cost{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;color:#F87171;}
+.problem-cost-label{font-size:10px;color:var(--gray-2);letter-spacing:0.08em;font-family:'IBM Plex Mono',monospace;}
+.problem-bottom{margin-top:20px;display:flex;gap:14px;align-items:center;}
+.risk-card{flex:1;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:18px 22px;display:flex;align-items:center;gap:14px;}
+.risk-icon{font-size:26px;}
+.risk-text{font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:var(--gray-1);line-height:1.5;}
+.risk-text strong{color:#F87171;}
+.total-waste{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:18px 28px;text-align:center;}
+.total-waste-num{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:#F87171;}
+.total-waste-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;color:#F87171;opacity:0.7;margin-top:4px;}
+#slide-03{justify-content:center;}
+.ecosystem-layout{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;}
+.ecosystem-desc{font-size:14px;color:var(--gray-1);line-height:1.8;margin-bottom:28px;font-weight:300;}
+.ecosystem-props{display:flex;flex-direction:column;gap:9px;}
+.ecosystem-prop{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--gray-1);}
+.ecosystem-prop-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.ecosystem-right{position:relative;}
+.eco-diamond{position:relative;width:380px;height:340px;margin:0 auto;}
+.eco-node{position:absolute;width:110px;height:110px;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:default;}
+.eco-node-icon{font-size:26px;}
+.eco-node-name{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.08em;font-weight:500;text-align:center;}
+.eco-node-tag{font-family:'IBM Plex Sans',sans-serif;font-size:9px;color:rgba(255,255,255,0.4);text-align:center;}
+.eco-vsp{background:rgba(217,119,6,0.1);border:1px solid rgba(217,119,6,0.35);box-shadow:0 0 40px rgba(217,119,6,0.12);top:0;left:50%;transform:translateX(-50%);}
+.eco-vcs{background:rgba(8,145,178,0.1);border:1px solid rgba(8,145,178,0.35);box-shadow:0 0 40px rgba(8,145,178,0.12);top:50%;left:0;transform:translateY(-50%);}
+.eco-vpt{background:rgba(101,163,13,0.1);border:1px solid rgba(101,163,13,0.35);box-shadow:0 0 40px rgba(101,163,13,0.12);top:50%;right:0;transform:translateY(-50%);}
+.eco-vic{background:rgba(0,210,255,0.08);border:1px solid rgba(0,210,255,0.3);box-shadow:0 0 40px rgba(0,210,255,0.12);bottom:0;left:50%;transform:translateX(-50%);}
+.eco-node-vsp{color:var(--amber-light);}
+.eco-node-vcs{color:var(--teal-light);}
+.eco-node-vpt{color:var(--lime-light);}
+.eco-node-vic{color:var(--cyan);}
+.eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:100px;}
+.eco-center-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:0.15em;line-height:1.6;}
+svg.eco-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.module-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start;flex:1;}
+.module-accent-line{width:40px;height:3px;border-radius:2px;margin-bottom:22px;}
+.module-desc{font-size:14px;color:var(--gray-1);line-height:1.8;margin-bottom:28px;font-weight:300;max-width:440px;}
+.module-features{display:flex;flex-direction:column;gap:11px;margin-bottom:28px;}
+.module-feature{display:flex;align-items:flex-start;gap:12px;}
+.feature-check{width:18px;height:18px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px;}
+.feature-text{font-size:13px;color:var(--gray-1);line-height:1.5;}
+.feature-text strong{color:var(--white);}
+.module-saving{border-radius:10px;padding:18px 22px;display:flex;align-items:center;gap:14px;}
+.saving-arrow{font-size:22px;}
+.saving-before{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray-2);text-decoration:line-through;}
+.saving-after{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;}
+.module-right{position:relative;}
+.heatmap-container{background:var(--navy-3);border:1px solid var(--glass-border);border-radius:16px;padding:22px;overflow:hidden;}
+.heatmap-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.heatmap-title{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:var(--gray-1);}
+.heatmap-grid{display:grid;grid-template-columns:60px repeat(7,1fr);gap:4px;}
+.heatmap-cell{height:34px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;}
+.heatmap-label{background:transparent;color:var(--gray-2);font-size:9px;justify-content:flex-start;}
+.heatmap-header-cell{background:transparent;color:var(--gray-2);font-size:9px;font-family:'IBM Plex Mono',monospace;letter-spacing:0.05em;height:22px;}
+.h-full{background:rgba(101,163,13,0.25);color:var(--lime-light);}
+.h-high{background:rgba(101,163,13,0.15);color:var(--lime-light);opacity:0.8;}
+.h-med{background:rgba(217,119,6,0.2);color:var(--amber-light);}
+.h-low{background:rgba(239,68,68,0.15);color:#F87171;}
+.heatmap-legend{display:flex;gap:14px;margin-top:14px;}
+.legend-item{display:flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gray-2);}
+.legend-dot{width:10px;height:10px;border-radius:2px;}
+.sorter-container{background:var(--navy-3);border:1px solid var(--glass-border);border-radius:16px;padding:22px;}
+.sorter-stats{display:flex;gap:10px;margin-bottom:18px;}
+.sorter-stat{flex:1;background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;padding:10px;text-align:center;}
+.sorter-stat-num{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;}
+.sorter-stat-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gray-2);letter-spacing:0.08em;margin-top:2px;}
+.ticket-list{display:flex;flex-direction:column;gap:5px;}
+.ticket-row{display:flex;align-items:center;gap:10px;background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;padding:9px 12px;font-family:'IBM Plex Mono',monospace;font-size:10px;}
+.ticket-row.locked{border-color:rgba(8,145,178,0.4);background:rgba(8,145,178,0.06);}
+.ticket-id{color:var(--gray-2);flex-shrink:0;}
+.ticket-subject{color:var(--gray-1);flex:1;font-size:10px;}
+.ticket-lock{display:flex;align-items:center;gap:5px;color:var(--teal-light);font-size:10px;}
+.ticket-available{color:var(--lime-light);font-size:10px;}
+.collision-rate{margin-top:14px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.collision-rate span{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;color:var(--lime-light);display:block;}
+.tracker-container{background:var(--navy-3);border:1px solid var(--glass-border);border-radius:16px;padding:22px;}
+.leaderboard{display:flex;flex-direction:column;gap:7px;margin-bottom:18px;}
+.lb-row{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:8px;background:var(--glass);border:1px solid var(--glass-border);}
+.lb-row.top{border-color:rgba(217,119,6,0.35);background:rgba(217,119,6,0.06);}
+.lb-rank{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--gray-2);width:20px;flex-shrink:0;}
+.lb-rank.gold{color:var(--amber-light);}
+.lb-name{flex:1;font-size:12px;}
+.lb-level{font-family:'IBM Plex Mono',monospace;font-size:9px;padding:2px 7px;border-radius:3px;}
+.lb-score{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;}
+.level-diamond{background:rgba(217,119,6,0.2);color:var(--amber-light);}
+.level-gold{background:rgba(234,179,8,0.15);color:#EAB308;}
+.level-silver{background:rgba(148,163,184,0.15);color:var(--gray-1);}
+.level-bronze{background:rgba(180,83,9,0.15);color:#B45309;}
+.lb-bar-container{width:72px;height:3px;background:var(--gray-3);border-radius:2px;overflow:hidden;}
+.lb-bar{height:100%;border-radius:2px;}
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.kpi-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:8px;padding:10px;}
+.kpi-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gray-2);letter-spacing:0.08em;margin-bottom:5px;}
+.kpi-value{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;}
+.kpi-delta{font-family:'IBM Plex Mono',monospace;font-size:10px;margin-top:2px;}
+.delta-pos{color:var(--lime-light);}
+.delta-neg{color:#F87171;}
+#slide-07{justify-content:center;}
+.roi-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:start;}
+.roi-hero-num{font-family:'Syne',sans-serif;font-size:88px;font-weight:800;line-height:1;color:var(--amber-light);text-shadow:0 0 60px rgba(245,158,11,0.3);margin:16px 0 8px;}
+.roi-hero-label{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);letter-spacing:0.15em;margin-bottom:24px;}
+.roi-table{border:1px solid var(--glass-border);border-radius:12px;overflow:hidden;}
+.roi-table-header{display:grid;grid-template-columns:2fr 1.2fr 1.2fr;background:rgba(255,255,255,0.04);border-bottom:1px solid var(--glass-border);}
+.roi-th{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:0.12em;color:var(--gray-2);padding:11px 14px;text-transform:uppercase;}
+.roi-row{display:grid;grid-template-columns:2fr 1.2fr 1.2fr;border-bottom:1px solid rgba(255,255,255,0.04);}
+.roi-row:last-child{border-bottom:none;}
+.roi-td{padding:12px 14px;font-size:12px;color:var(--gray-1);border-right:1px solid rgba(255,255,255,0.04);}
+.roi-td:last-child{border-right:none;}
+.roi-td.save{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--lime-light);font-weight:500;background:rgba(101,163,13,0.05);}
+.roi-td.before{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#F87171;text-decoration:line-through;opacity:0.7;}
+.roi-total{background:rgba(217,119,6,0.05);border-top:1px solid rgba(217,119,6,0.2);}
+.roi-total .roi-td{color:var(--white);font-weight:500;}
+.roi-total .roi-td.save{color:var(--amber-light);background:rgba(217,119,6,0.08);font-size:13px;}
+.roi-cards{display:flex;flex-direction:column;gap:10px;}
+.roi-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:16px 20px;}
+.roi-card-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:700;line-height:1;}
+.roi-card-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-1);letter-spacing:0.1em;margin-top:6px;}
+#slide-08{justify-content:center;}
+.ba-grid{display:grid;grid-template-columns:1fr 44px 1fr;gap:0;align-items:start;}
+.ba-col{background:var(--glass);border:1px solid var(--glass-border);border-radius:16px;padding:28px;}
+.ba-col.after{border-color:rgba(101,163,13,0.2);}
+.ba-divider{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.ba-arrow{width:30px;height:30px;background:var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 0 20px rgba(217,119,6,0.4);}
+.ba-line{flex:1;width:1px;background:linear-gradient(to bottom,transparent,var(--amber),transparent);opacity:0.3;}
+.ba-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+.ba-label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.15em;}
+.ba-items{display:flex;flex-direction:column;gap:12px;}
+.ba-item{display:flex;align-items:flex-start;gap:10px;font-size:12px;color:var(--gray-1);line-height:1.5;}
+.ba-item-icon{flex-shrink:0;font-size:13px;margin-top:1px;}
+#slide-09{justify-content:center;}
+.roadmap-timeline{position:relative;padding:32px 0;}
+.timeline-line{position:absolute;top:calc(50% - 1px);left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--teal),var(--lime));opacity:0.3;}
+.timeline-nodes{display:flex;justify-content:space-between;position:relative;z-index:1;}
+.timeline-node{display:flex;flex-direction:column;align-items:center;gap:12px;width:150px;}
+.timeline-node:nth-child(odd){flex-direction:column-reverse;}
+.tl-dot{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;position:relative;z-index:2;flex-shrink:0;}
+.tl-dot.current{background:rgba(217,119,6,0.2);border:2px solid var(--amber);box-shadow:0 0 24px rgba(217,119,6,0.3);}
+.tl-dot.future{background:var(--glass);border:1px solid var(--glass-border);}
+.tl-info{text-align:center;}
+.tl-version{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--amber);letter-spacing:0.1em;margin-bottom:3px;}
+.tl-title{font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:var(--white);font-weight:500;margin-bottom:5px;}
+.tl-items{display:flex;flex-direction:column;gap:3px;}
+.tl-item{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gray-2);}
+.scale-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px;}
+.scale-card{background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:14px;text-align:center;}
+.scale-icon{font-size:22px;margin-bottom:7px;}
+.scale-label{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-1);letter-spacing:0.08em;}
+#slide-10{justify-content:center;align-items:center;text-align:center;}
+.close-orb-1{width:600px;height:600px;background:rgba(217,119,6,0.06);top:-150px;left:-200px;}
+.close-orb-2{width:400px;height:400px;background:rgba(101,163,13,0.05);bottom:-100px;right:-80px;}
+.close-icons{display:flex;gap:24px;justify-content:center;margin-bottom:40px;}
+.close-icon-wrap{position:relative;}
+.close-glow{position:absolute;inset:-18px;border-radius:28px;filter:blur(20px);opacity:0.3;}
+.vsp-glow{background:var(--amber);}
+.vcs-glow{background:var(--teal);}
+.vpt-glow{background:var(--lime);}
+.vic-glow{background:var(--cyan);}
+.close-main-title{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;line-height:1.2;letter-spacing:-0.01em;margin-bottom:14px;}
+.close-sub{font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:var(--gray-1);margin-bottom:36px;max-width:520px;line-height:1.7;font-weight:300;}
+.close-final-tag{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--amber);letter-spacing:0.15em;}
+.close-metrics{display:flex;gap:0;justify-content:center;margin-bottom:40px;border:1px solid var(--glass-border);border-radius:12px;overflow:hidden;background:var(--glass);}
+.close-metric{padding:20px 32px;border-right:1px solid var(--glass-border);}
+.close-metric:last-child{border-right:none;}
+.close-metric-num{font-family:'Syne',sans-serif;font-size:30px;font-weight:700;color:var(--amber-light);}
+.close-metric-label{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gray-2);letter-spacing:0.1em;margin-top:4px;}
+.kb-hint{position:fixed;top:18px;right:18px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-2);background:var(--glass);border:1px solid var(--glass-border);border-radius:6px;padding:5px 10px;letter-spacing:0.05em;z-index:100;}
+.slide-num-label{position:absolute;top:24px;left:72px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gray-2);letter-spacing:0.1em;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.slide.active .animate-1{animation:fadeUp 0.5s 0.1s both;}
+.slide.active .animate-2{animation:fadeUp 0.5s 0.2s both;}
+.slide.active .animate-3{animation:fadeUp 0.5s 0.3s both;}
+.slide.active .animate-4{animation:fadeUp 0.5s 0.4s both;}
+.slide.active .animate-5{animation:fadeUp 0.5s 0.5s both;}
+.slide.active .animate-6{animation:fadeUp 0.5s 0.6s both;}
+
+/* VIC Terminal Mockup */
+.vic-terminal{background:#020408;border:1px solid rgba(0,210,255,0.25);border-radius:14px;overflow:hidden;font-family:'IBM Plex Mono',monospace;box-shadow:0 0 60px rgba(0,210,255,0.08);}
+.vic-term-bar{background:linear-gradient(90deg,rgba(4,6,14,0.98),rgba(8,13,26,0.98));border-bottom:1px solid rgba(0,210,255,0.15);display:flex;align-items:center;padding:0 16px;height:34px;gap:10px;}
+.vic-term-dots{display:flex;gap:5px;}
+.vic-term-dot{width:9px;height:9px;border-radius:50%;}
+.vic-term-body{padding:18px;display:flex;flex-direction:column;gap:14px;min-height:220px;}
+.vic-mode-tabs{display:flex;gap:1px;margin-bottom:4px;}
+.vic-tab{font-family:'IBM Plex Mono',monospace;font-size:10px;padding:4px 12px;border-radius:4px 4px 0 0;letter-spacing:0.08em;cursor:default;}
+.vic-tab.active-tab{background:rgba(0,210,255,0.12);color:var(--cyan);border:1px solid rgba(0,210,255,0.25);border-bottom:none;}
+.vic-tab.inactive-tab{background:transparent;color:var(--gray-2);border:1px solid transparent;}
+.vic-msg{display:flex;flex-direction:column;gap:4px;}
+.vic-msg-label{font-size:9px;letter-spacing:0.12em;text-transform:uppercase;}
+.vic-msg-label.user-lbl{color:var(--gray-2);}
+.vic-msg-label.ai-lbl{color:var(--cyan);}
+.vic-msg-text{font-size:11px;line-height:1.6;padding:8px 12px;border-radius:8px;}
+.vic-msg-text.user-msg{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);color:var(--gray-1);}
+.vic-msg-text.ai-msg{background:rgba(0,210,255,0.06);border:1px solid rgba(0,210,255,0.18);color:#c8d0e8;}
+.vic-msg-text.ai-msg span{color:var(--cyan);}
+.vic-cursor{display:inline-block;width:7px;height:12px;background:var(--cyan);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.vic-security-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
+.vic-sec-chip{font-size:9px;padding:3px 8px;border-radius:4px;letter-spacing:0.08em;}
+.vic-feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.vic-feat-card{background:rgba(0,210,255,0.05);border:1px solid rgba(0,210,255,0.18);border-radius:10px;padding:14px 16px;}
+.vic-feat-icon{font-size:18px;margin-bottom:6px;}
+.vic-feat-title{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:0.1em;margin-bottom:4px;}
+.vic-feat-desc{font-size:12px;color:var(--gray-1);line-height:1.5;}
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="progress-bar" id="progressBar"></div>
+<div class="dots" id="dots"></div>
+<div class="kb-hint">← → ARROW KEYS</div>
+<div class="deck" id="deck">
+
+<!-- ══════════════════ SLIDE 01 — HERO ══════════════════ -->
+<section class="slide active" id="slide-01">
+  <div class="grid-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-icons animate-1">
+    <div class="hero-icon hero-icon-vsp eco-node-vsp">📅</div>
+    <div class="connector-line"></div>
+    <div class="hero-icon hero-icon-vcs eco-node-vcs">🔒</div>
+    <div class="connector-line"></div>
+    <div class="hero-icon hero-icon-vpt eco-node-vpt">📊</div>
+    <div class="connector-line"></div>
+    <div class="hero-icon hero-icon-vic eco-node-vic">🧠</div>
+  </div>
+  <h1 class="hero-title animate-2">VIP Operations Suite</h1>
+  <p class="hero-subtitle animate-3">Transforming a 73-Agent, 4-Country Support Operation — From Spreadsheets to a Living, Breathing System</p>
+  <div class="hero-tagline animate-4">// v1.0 &nbsp;·&nbsp; LIVE IN PRODUCTION &nbsp;·&nbsp; 73 AGENTS &nbsp;·&nbsp; 4 COUNTRIES</div>
+  <div class="hero-stats animate-5">
+    <div class="hero-stat">
+      <div class="hero-stat-num">73</div>
+      <div class="hero-stat-label">AGENTS</div>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">COUNTRIES</div>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">MODULES</div>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">~1.8</div>
+      <div class="hero-stat-label">FTEs SAVED</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 02 — PROBLEM ══════════════════ -->
+<section class="slide" id="slide-02">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">02 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// PRIOR STATE OF OPERATIONS</div>
+    <h2 class="slide-title">Before: A High-Stakes Operation<br><span>Running on Chaos</span></h2>
+  </div>
+  <div class="problem-grid animate-2">
+    <div class="problem-card">
+      <div class="problem-icon">📋</div>
+      <div class="problem-title">⚠ WFM IN SPREADSHEETS</div>
+      <div class="problem-desc">73 agents across 4 countries coordinated manually. No automated compliance rules. No real-time coverage visibility.</div>
+      <div class="problem-cost">4–6 hrs</div>
+      <div class="problem-cost-label">PER DAY · 1 WFM ANALYST</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">⚡</div>
+      <div class="problem-title">⚠ MANUAL TICKET DISPATCH</div>
+      <div class="problem-desc">A Dispatcher manually assigning tickets. Frequent agent collisions. Cherry-picking of easy cases. Daily duplicated effort with zero added value.</div>
+      <div class="problem-cost">2 hrs</div>
+      <div class="problem-cost-label">DUPLICATED WORK · EVERY DAY</div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📈</div>
+      <div class="problem-title">⚠ DELAYED REPORTING</div>
+      <div class="problem-desc">Manually cross-referenced CSVs to generate performance reports with 24–48 hour lag. Real-time decision-making was impossible.</div>
+      <div class="problem-cost">3–4 hrs</div>
+      <div class="problem-cost-label">PER DAY · 1 DATA ANALYST</div>
+    </div>
+  </div>
+  <div class="problem-bottom animate-3">
+    <div class="risk-card">
+      <div class="risk-icon">⚖️</div>
+      <div class="risk-text">
+        <strong>ACTIVE LEGAL RISK:</strong> Manual shift management across 4 countries without a compliance engine — constant exposure to local labor law violations and regulatory fines.
+      </div>
+    </div>
+    <div class="total-waste">
+      <div class="total-waste-num">~8.5 hrs</div>
+      <div class="total-waste-label">WASTED / DAY</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 03 — ECOSYSTEM ══════════════════ -->
+<section class="slide" id="slide-03">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">03 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// INTRODUCING THE VIP OPERATIONS SUITE</div>
+    <h2 class="slide-title">Four modules. One ecosystem.<br><span>Zero friction.</span></h2>
+  </div>
+  <div class="ecosystem-layout">
+    <div class="ecosystem-left animate-2">
+      <p class="ecosystem-desc">This is not an isolated tool. It is an <strong>integrated operational ecosystem</strong> of four modules built natively for this operation. Each module eliminates a critical vector of inefficiency.</p>
+      <div class="ecosystem-props">
+        <div class="ecosystem-prop"><div class="ecosystem-prop-dot" style="background:var(--amber)"></div> <strong>VSP</strong> &nbsp;— People: Intelligent shift scheduling & compliance</div>
+        <div class="ecosystem-prop"><div class="ecosystem-prop-dot" style="background:var(--teal)"></div> <strong>VCS</strong> &nbsp;— Flow: Collision-free real-time case routing</div>
+        <div class="ecosystem-prop"><div class="ecosystem-prop-dot" style="background:var(--lime)"></div> <strong>VPT</strong> &nbsp;— Performance: Live gamified business intelligence</div>
+        <div class="ecosystem-prop"><div class="ecosystem-prop-dot" style="background:var(--cyan)"></div> <strong>VIC</strong> &nbsp;— Intelligence: AI-powered ops knowledge & reporting</div>
+        <div class="ecosystem-prop" style="margin-top:7px"><div class="ecosystem-prop-dot" style="background:var(--gray-2)"></div> Web-based · Dark mode · Real-time · Zendesk connected</div>
+        <div class="ecosystem-prop"><div class="ecosystem-prop-dot" style="background:var(--gray-2)"></div> 100% internally owned · Zero external licensing costs</div>
+        <div class="ecosystem-prop"><div class="ecosystem-prop-dot" style="background:var(--gray-2)"></div> Purpose-built for this operation and team</div>
+      </div>
+      <div style="margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;">
+        <span class="badge badge-amber"><div class="dot-live" style="background:var(--amber-light)"></div>LIVE IN PRODUCTION</span>
+        <span class="badge badge-teal">ZENDESK CONNECTED</span>
+        <span class="badge badge-lime">REAL-TIME DATA</span>
+        <span class="badge badge-cyan"><div class="dot-live-cyan"></div>AI POWERED</span>
+      </div>
+    </div>
+    <div class="ecosystem-right animate-3">
+      <div class="eco-diamond">
+        <svg class="eco-lines" viewBox="0 0 380 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lAmber" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D97706" stop-opacity="0.5"/><stop offset="100%" stop-color="#D97706" stop-opacity="0.1"/></linearGradient>
+            <linearGradient id="lTeal" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0891B2" stop-opacity="0.5"/><stop offset="100%" stop-color="#0891B2" stop-opacity="0.1"/></linearGradient>
+            <linearGradient id="lLime" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#65A30D" stop-opacity="0.5"/><stop offset="100%" stop-color="#65A30D" stop-opacity="0.1"/></linearGradient>
+            <linearGradient id="lCyan" x1="100%" y1="100%" x2="0%" y2="0%"><stop offset="0%" stop-color="#00d2ff" stop-opacity="0.5"/><stop offset="100%" stop-color="#00d2ff" stop-opacity="0.1"/></linearGradient>
+          </defs>
+          <line x1="190" y1="55" x2="55" y2="170" stroke="url(#lTeal)" stroke-width="1.5"/>
+          <line x1="190" y1="55" x2="325" y2="170" stroke="url(#lLime)" stroke-width="1.5"/>
+          <line x1="55" y1="170" x2="190" y2="285" stroke="url(#lAmber)" stroke-width="1.5"/>
+          <line x1="325" y1="170" x2="190" y2="285" stroke="url(#lCyan)" stroke-width="1.5"/>
+          <line x1="55" y1="170" x2="325" y2="170" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="190" y1="55" x2="190" y2="285" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+        </svg>
+        <div class="eco-node eco-vsp eco-node-vsp">
+          <div class="eco-node-icon">📅</div>
+          <div class="eco-node-name">VIP SHIFT PLANNER</div>
+          <div class="eco-node-tag">Workforce Mgmt</div>
+        </div>
+        <div class="eco-node eco-vcs eco-node-vcs">
+          <div class="eco-node-icon">🔒</div>
+          <div class="eco-node-name">VIP CASE SORTER</div>
+          <div class="eco-node-tag">Workflow Mgmt</div>
+        </div>
+        <div class="eco-node eco-vpt eco-node-vpt">
+          <div class="eco-node-icon">📊</div>
+          <div class="eco-node-name">VIP PERF. TRACKER</div>
+          <div class="eco-node-tag">Business Intelligence</div>
+        </div>
+        <div class="eco-node eco-vic eco-node-vic">
+          <div class="eco-node-icon">🧠</div>
+          <div class="eco-node-name">VIC NEURAL CORE</div>
+          <div class="eco-node-tag">AI Intelligence</div>
+        </div>
+        <div class="eco-center">
+          <div class="eco-center-tag">ONE<br>ECOSYSTEM<br>ZERO<br>FRICTION</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 04 — VSP ══════════════════ -->
+<section class="slide" id="slide-04">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">04 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// MODULE 01 · WORKFORCE MANAGEMENT</div>
+    <h2 class="slide-title"><span style="color:var(--amber-light)">VIP Shift Planner</span><br>Workforce Intelligence at Scale</h2>
+  </div>
+  <div class="module-layout">
+    <div class="module-left animate-2">
+      <div class="module-accent-line" style="background:var(--amber)"></div>
+      <div class="module-features">
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(217,119,6,0.15);color:var(--amber-light)">✓</div>
+          <div class="feature-text"><strong>Real-time schedule management</strong> for 73 agents across 4 countries — single interface</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(217,119,6,0.15);color:var(--amber-light)">✓</div>
+          <div class="feature-text"><strong>Coverage heatmaps:</strong> instant visibility into gaps, overlaps, and demand spikes</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(217,119,6,0.15);color:var(--amber-light)">✓</div>
+          <div class="feature-text">Automated <strong>shift-swap workflows</strong> with integrated manager approvals</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(217,119,6,0.15);color:var(--amber-light)">✓</div>
+          <div class="feature-text"><strong>Per-country compliance engine:</strong> min. 11h rest, max. 5 consecutive days. Zero violations possible.</div>
+        </div>
+      </div>
+      <div class="module-saving" style="background:rgba(217,119,6,0.06);border:1px solid rgba(217,119,6,0.2);">
+        <div class="saving-arrow" style="font-size:18px;color:var(--amber-light)">▶</div>
+        <div>
+          <div class="saving-before">4–6 hrs/day · 1 Manual WFM Analyst</div>
+          <div class="saving-after" style="color:var(--amber-light)">→ Automated system + minimal oversight</div>
+          <div style="margin-top:6px;display:flex;gap:8px">
+            <span class="badge badge-amber">~3.5 HRS/DAY SAVED</span>
+            <span class="badge badge-lime"><div class="dot-live"></div>LIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="module-right animate-3">
+      <div class="heatmap-container">
+        <div class="heatmap-header">
+          <span class="heatmap-title">COVERAGE HEATMAP — WEEK VIEW</span>
+          <span class="badge badge-amber"><div class="dot-live" style="background:var(--amber-light)"></div>REAL-TIME</span>
+        </div>
+        <div class="heatmap-grid">
+          <div class="heatmap-cell heatmap-header-cell"></div>
+          <div class="heatmap-cell heatmap-header-cell">MON</div>
+          <div class="heatmap-cell heatmap-header-cell">TUE</div>
+          <div class="heatmap-cell heatmap-header-cell">WED</div>
+          <div class="heatmap-cell heatmap-header-cell">THU</div>
+          <div class="heatmap-cell heatmap-header-cell">FRI</div>
+          <div class="heatmap-cell heatmap-header-cell">SAT</div>
+          <div class="heatmap-cell heatmap-header-cell">SUN</div>
+          <div class="heatmap-cell heatmap-label">00–08</div>
+          <div class="heatmap-cell h-med">14</div><div class="heatmap-cell h-high">18</div><div class="heatmap-cell h-high">17</div><div class="heatmap-cell h-full">22</div><div class="heatmap-cell h-high">19</div><div class="heatmap-cell h-low">8</div><div class="heatmap-cell h-low">6</div>
+          <div class="heatmap-cell heatmap-label">08–16</div>
+          <div class="heatmap-cell h-full">24</div><div class="heatmap-cell h-full">25</div><div class="heatmap-cell h-full">24</div><div class="heatmap-cell h-full">26</div><div class="heatmap-cell h-full">25</div><div class="heatmap-cell h-med">15</div><div class="heatmap-cell h-med">12</div>
+          <div class="heatmap-cell heatmap-label">16–24</div>
+          <div class="heatmap-cell h-high">20</div><div class="heatmap-cell h-full">22</div><div class="heatmap-cell h-full">23</div><div class="heatmap-cell h-high">21</div><div class="heatmap-cell h-high">20</div><div class="heatmap-cell h-low">9</div><div class="heatmap-cell h-low">7</div>
+        </div>
+        <div class="heatmap-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(101,163,13,0.5)"></div>Full coverage</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(101,163,13,0.3)"></div>High</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(217,119,6,0.4)"></div>Partial</div>
+          <div class="legend-item"><div class="legend-dot" style="background:rgba(239,68,68,0.4)"></div>Gap</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+        <div class="card" style="padding:12px 14px"><div class="label">REST RULE</div><div style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--lime-light);margin-top:4px">≥11h <span class="badge badge-lime" style="font-size:9px">ENFORCED</span></div></div>
+        <div class="card" style="padding:12px 14px"><div class="label">CONSEC. DAYS</div><div style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--lime-light);margin-top:4px">≤5 days <span class="badge badge-lime" style="font-size:9px">AUTO</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 05 — VCS ══════════════════ -->
+<section class="slide" id="slide-05">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">05 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// MODULE 02 · WORKFLOW MANAGEMENT</div>
+    <h2 class="slide-title"><span style="color:var(--teal-light)">VIP Case Sorter</span><br>Real-Time Collision-Free Case Management</h2>
+  </div>
+  <div class="module-layout">
+    <div class="module-left animate-2">
+      <div class="module-accent-line" style="background:var(--teal)"></div>
+      <div class="module-features">
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(8,145,178,0.15);color:var(--teal-light)">✓</div>
+          <div class="feature-text"><strong>Native Zendesk integration:</strong> automatic ingestion of the ticket stream in real time</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(8,145,178,0.15);color:var(--teal-light)">✓</div>
+          <div class="feature-text">Intelligent <strong>duplicate vs. unique case</strong> separation, fully automated</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(8,145,178,0.15);color:var(--teal-light)">✓</div>
+          <div class="feature-text"><strong>Optimistic Locking in real time:</strong> ticket claimed → locked for all other agents in &lt;1 second</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(8,145,178,0.15);color:var(--teal-light)">✓</div>
+          <div class="feature-text">Eliminates <strong>cherry-picking:</strong> fair, controlled workflow distribution across all 73 agents</div>
+        </div>
+      </div>
+      <div class="module-saving" style="background:rgba(8,145,178,0.06);border:1px solid rgba(8,145,178,0.2);">
+        <div class="saving-arrow" style="font-size:18px;color:var(--amber-light)">▶</div>
+        <div>
+          <div class="saving-before">1 Manual Dispatcher + 2 hrs/day duplicated work</div>
+          <div class="saving-after" style="color:var(--teal-light)">→ Automated dispatch + 0 collisions</div>
+          <div style="margin-top:6px;display:flex;gap:8px">
+            <span class="badge badge-teal">~2.1 HRS/DAY SAVED</span>
+            <span class="badge badge-lime"><div class="dot-live"></div>LIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="module-right animate-3">
+      <div class="sorter-container">
+        <div class="heatmap-header">
+          <span class="heatmap-title">TICKET QUEUE — LIVE VIEW</span>
+          <span class="badge badge-teal"><div class="dot-live" style="background:var(--teal-light)"></div>CONNECTED</span>
+        </div>
+        <div class="sorter-stats">
+          <div class="sorter-stat"><div class="sorter-stat-num" style="color:var(--amber-light)">247</div><div class="sorter-stat-label">TOTAL TICKETS</div></div>
+          <div class="sorter-stat"><div class="sorter-stat-num" style="color:var(--teal-light)">189</div><div class="sorter-stat-label">UNIQUE CASES</div></div>
+          <div class="sorter-stat"><div class="sorter-stat-num" style="color:#F87171">58</div><div class="sorter-stat-label">DUPLICATES</div></div>
+        </div>
+        <div class="ticket-list">
+          <div class="ticket-row locked"><span class="ticket-id">#TK-4821</span><span class="ticket-subject">Billing dispute — Account upgrade</span><span class="ticket-lock">🔒 María G.</span></div>
+          <div class="ticket-row"><span class="ticket-id">#TK-4822</span><span class="ticket-subject">API integration issue — urgent</span><span class="ticket-available">● OPEN</span></div>
+          <div class="ticket-row locked"><span class="ticket-id">#TK-4823</span><span class="ticket-subject">Password reset loop — Enterprise</span><span class="ticket-lock">🔒 Carlos R.</span></div>
+          <div class="ticket-row"><span class="ticket-id">#TK-4824</span><span class="ticket-subject">Feature request — Priority queue</span><span class="ticket-available">● OPEN</span></div>
+          <div class="ticket-row"><span class="ticket-id">#TK-4825</span><span class="ticket-subject">Refund request — 60 days policy</span><span class="ticket-available">● OPEN</span></div>
+        </div>
+        <div class="collision-rate">
+          <div class="label" style="color:var(--gray-2)">COLLISION RATE</div>
+          <span>0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 06 — VPT ══════════════════ -->
+<section class="slide" id="slide-06">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">06 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// MODULE 03 · BUSINESS INTELLIGENCE</div>
+    <h2 class="slide-title"><span style="color:var(--lime-light)">VIP Performance Tracker</span><br>Business Intelligence That Moves the Needle</h2>
+  </div>
+  <div class="module-layout">
+    <div class="module-left animate-2">
+      <div class="module-accent-line" style="background:var(--lime)"></div>
+      <div class="module-features">
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(101,163,13,0.15);color:var(--lime-light)">✓</div>
+          <div class="feature-text">Real-time dashboard with <strong>MTD metrics, MoM deltas</strong> and end-of-month projections</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(101,163,13,0.15);color:var(--lime-light)">✓</div>
+          <div class="feature-text"><strong>Operational gamification:</strong> live animated leaderboards and Bronze → Diamond tier progression</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(101,163,13,0.15);color:var(--lime-light)">✓</div>
+          <div class="feature-text">Advanced charts: <strong>Radar</strong> (agent profile), <strong>Waterfall</strong> (evolution), <strong>Scatter</strong> (outlier detection)</div>
+        </div>
+        <div class="module-feature">
+          <div class="feature-check" style="background:rgba(101,163,13,0.15);color:var(--lime-light)">✓</div>
+          <div class="feature-text"><strong>Dedicated executive view:</strong> directional KPIs available in seconds. No analyst dependency.</div>
+        </div>
+      </div>
+      <div class="module-saving" style="background:rgba(101,163,13,0.06);border:1px solid rgba(101,163,13,0.2);">
+        <div class="saving-arrow" style="font-size:18px;color:var(--amber-light)">▶</div>
+        <div>
+          <div class="saving-before">3–4 hrs/day · CSVs · Reports with 24h delay</div>
+          <div class="saving-after" style="color:var(--lime-light)">→ Real-time dashboard · Decisions in seconds</div>
+          <div style="margin-top:6px;display:flex;gap:8px">
+            <span class="badge" style="background:rgba(101,163,13,0.15);color:var(--lime-light);border:1px solid rgba(101,163,13,0.3)">~2.5 HRS/DAY SAVED</span>
+            <span class="badge badge-lime"><div class="dot-live"></div>LIVE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="module-right animate-3">
+      <div class="tracker-container">
+        <div class="heatmap-header">
+          <span class="heatmap-title">PERFORMANCE LEADERBOARD</span>
+          <span class="badge badge-lime"><div class="dot-live"></div>MTD LIVE</span>
+        </div>
+        <div class="leaderboard">
+          <div class="lb-row top">
+            <span class="lb-rank gold">01</span><span class="lb-name">María González</span>
+            <span class="lb-level level-diamond">💎 DIAMOND</span>
+            <div class="lb-bar-container"><div class="lb-bar" style="width:100%;background:var(--amber)"></div></div>
+            <span class="lb-score" style="color:var(--amber-light)">98.4</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">02</span><span class="lb-name">Carlos Rodríguez</span>
+            <span class="lb-level level-gold">🥇 GOLD</span>
+            <div class="lb-bar-container"><div class="lb-bar" style="width:90%;background:var(--lime)"></div></div>
+            <span class="lb-score" style="color:var(--lime-light)">94.1</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">03</span><span class="lb-name">Ana Martínez</span>
+            <span class="lb-level level-gold">🥇 GOLD</span>
+            <div class="lb-bar-container"><div class="lb-bar" style="width:86%;background:var(--lime)"></div></div>
+            <span class="lb-score" style="color:var(--lime-light)">91.8</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">04</span><span class="lb-name">David Kim</span>
+            <span class="lb-level level-silver">🥈 SILVER</span>
+            <div class="lb-bar-container"><div class="lb-bar" style="width:78%;background:var(--teal)"></div></div>
+            <span class="lb-score" style="color:var(--teal-light)">87.3</span>
+          </div>
+          <div class="lb-row">
+            <span class="lb-rank">05</span><span class="lb-name">Sofia Patel</span>
+            <span class="lb-level level-silver">🥈 SILVER</span>
+            <div class="lb-bar-container"><div class="lb-bar" style="width:74%;background:var(--teal)"></div></div>
+            <span class="lb-score" style="color:var(--teal-light)">85.0</span>
+          </div>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi-card"><div class="kpi-label">TEAM CSAT MTD</div><div class="kpi-value" style="color:var(--lime-light)">94.7%</div><div class="kpi-delta delta-pos">▲ +2.3% MoM</div></div>
+          <div class="kpi-card"><div class="kpi-label">AVG RESOLUTION</div><div class="kpi-value" style="color:var(--teal-light)">4.2h</div><div class="kpi-delta delta-pos">▼ -0.8h MoM</div></div>
+          <div class="kpi-card"><div class="kpi-label">TICKETS CLOSED</div><div class="kpi-value" style="color:var(--amber-light)">3,247</div><div class="kpi-delta delta-pos">▲ +12% MoM</div></div>
+          <div class="kpi-card"><div class="kpi-label">EOM PROJECTION</div><div class="kpi-value" style="color:var(--lime-light)">4,810</div><div class="kpi-delta delta-pos">▲ ON TRACK</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 07 — VIC ══════════════════ -->
+<section class="slide" id="slide-07">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">07 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// MODULE 04 · AI-POWERED OPERATIONAL INTELLIGENCE</div>
+    <h2 class="slide-title"><span style="color:var(--cyan)">VIC Neural Core</span><br>AI-Powered Operational Intelligence</h2>
+  </div>
+  <div class="module-layout">
+    <div class="module-left animate-2">
+      <div class="module-accent-line" style="background:var(--cyan)"></div>
+      <p style="font-size:13px;color:var(--gray-1);line-height:1.7;margin-bottom:20px;font-weight:300;">VIC drastically reduces the learning curve for new agents while providing continuous on-the-job training support — grounded entirely in your own protocols and secure knowledge base.</p>
+      <div class="vic-feat-grid">
+        <div class="vic-feat-card">
+          <div class="vic-feat-icon">🔍</div>
+          <div class="vic-feat-title">DETECTIVE MODE</div>
+          <div class="vic-feat-desc">Deep archive scanning for complex case resolution. Strictly protocol-grounded analysis — no hallucination, no guesswork.</div>
+        </div>
+        <div class="vic-feat-card">
+          <div class="vic-feat-icon">📋</div>
+          <div class="vic-feat-title">EXECUTIVE REPORTING</div>
+          <div class="vic-feat-desc">One-click management synthesis. Generates structured summaries for leadership without manual aggregation.</div>
+        </div>
+      </div>
+      <div style="background:rgba(0,210,255,0.05);border:1px solid rgba(0,210,255,0.2);border-radius:10px;padding:16px 18px;">
+        <div class="label" style="color:var(--cyan);margin-bottom:10px">TECH & SECURITY SPECS</div>
+        <div class="vic-security-row">
+          <span class="vic-sec-chip" style="background:rgba(0,210,255,0.1);color:var(--cyan);border:1px solid rgba(0,210,255,0.25)">⚡ GROQ API</span>
+          <span class="vic-sec-chip" style="background:rgba(101,163,13,0.1);color:var(--lime-light);border:1px solid rgba(101,163,13,0.25)">🔒 ZERO PII SHARED</span>
+          <span class="vic-sec-chip" style="background:rgba(217,119,6,0.1);color:var(--amber-light);border:1px solid rgba(217,119,6,0.25)">📁 GDRIVE GROUNDED</span>
+          <span class="vic-sec-chip" style="background:rgba(239,68,68,0.08);color:#F87171;border:1px solid rgba(239,68,68,0.2)">🚫 NO ACCOUNT DATA</span>
+        </div>
+        <div style="margin-top:10px;font-size:12px;color:var(--gray-1);line-height:1.5;">Model is strictly grounded using rules and protocols from a secure corporate Google Drive folder. No emails, account numbers, or confidential data are ever transmitted.</div>
+      </div>
+    </div>
+    <div class="module-right animate-3">
+      <div class="vic-terminal">
+        <div class="vic-term-bar">
+          <div class="vic-term-dots">
+            <div class="vic-term-dot" style="background:#FF5F57"></div>
+            <div class="vic-term-dot" style="background:#FFBD2E"></div>
+            <div class="vic-term-dot" style="background:#28CA41"></div>
+          </div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:rgba(0,210,255,0.6);letter-spacing:0.1em;margin-left:8px">VIC // NEURAL CORE // DETECTIVE MODE</span>
+          <span class="badge badge-cyan" style="margin-left:auto;font-size:9px"><div class="dot-live-cyan"></div>ACTIVE</span>
+        </div>
+        <div class="vic-term-body">
+          <div class="vic-mode-tabs">
+            <div class="vic-tab active-tab">🔍 DETECTIVE MODE</div>
+            <div class="vic-tab inactive-tab">📋 EXEC REPORT</div>
+            <div class="vic-tab inactive-tab">📚 TRAINING</div>
+          </div>
+          <div class="vic-msg">
+            <div class="vic-msg-label user-lbl">AGENT · 14:32</div>
+            <div class="vic-msg-text user-msg">Customer claims their account was charged twice after a plan upgrade. They have a screenshot but the transaction IDs don't match our system. Escalation path?</div>
+          </div>
+          <div class="vic-msg">
+            <div class="vic-msg-label ai-lbl">VIC · NEURAL CORE · PROTOCOL REF: BIL-07 · 14:32</div>
+            <div class="vic-msg-text ai-msg">
+              <span>Matched:</span> Billing Protocol BIL-07 — Duplicate Charge Investigation.<br><br>
+              <span>Step 1:</span> Request both transaction IDs + timestamps from customer.<br>
+              <span>Step 2:</span> Cross-reference against payment gateway log (not CRM).<br>
+              <span>Step 3:</span> If IDs differ → escalate to Tier 2 Finance within <span>4h SLA</span>.<br><br>
+              Similar case resolved: TK-3841 · See archived resolution.<div class="vic-cursor"></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:4px">
+            <span class="badge badge-cyan" style="font-size:9px">PROTOCOL GROUNDED</span>
+            <span class="badge badge-lime" style="font-size:9px">NO PII USED</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gray-2);margin-left:auto">⚡ 0.8s response</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 08 — ROI ══════════════════ -->
+<section class="slide" id="slide-08">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">08 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// ROI · TIME SAVINGS · FTE EQUIVALENTS</div>
+    <h2 class="slide-title">The Business Case:<br><span>Hard Numbers</span></h2>
+  </div>
+  <div class="roi-layout">
+    <div class="animate-2">
+      <div class="roi-table">
+        <div class="roi-table-header">
+          <div class="roi-th">PROCESS</div>
+          <div class="roi-th">BEFORE</div>
+          <div class="roi-th">NET SAVING</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-td">WFM Logistics (VSP)</div>
+          <div class="roi-td before">4–6 hrs/day</div>
+          <div class="roi-td save">~3.5 hrs/day</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-td">Ticket Dispatch (VCS)</div>
+          <div class="roi-td before">3–4 hrs/day</div>
+          <div class="roi-td save">~2.1 hrs/day</div>
+        </div>
+        <div class="roi-row">
+          <div class="roi-td">BI Reporting (VPT)</div>
+          <div class="roi-td before">3–4 hrs/day</div>
+          <div class="roi-td save">~2.5 hrs/day</div>
+        </div>
+        <div class="roi-row roi-total">
+          <div class="roi-td" style="font-weight:600">TOTAL ADMIN</div>
+          <div class="roi-td before" style="text-decoration:none;color:#F87171;font-weight:600">~8.5 hrs/day</div>
+          <div class="roi-td save">~6–7 hrs/day</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;padding:14px 18px;background:rgba(101,163,13,0.06);border:1px solid rgba(101,163,13,0.2);border-radius:10px;">
+        <div class="label" style="margin-bottom:6px">OPERATIONAL SAVING · 73 AGENTS</div>
+        <div style="font-size:13px;color:var(--gray-1)">7–10 min/agent/day of friction eliminated → <strong style="color:var(--lime-light)">+11 to +14 hours of net productivity per day</strong> redirected to direct customer service.</div>
+      </div>
+      <div style="margin-top:10px;padding:12px 18px;background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.2);border-radius:10px;display:flex;gap:12px;align-items:center">
+        <span style="font-size:18px">⚖️</span>
+        <div style="font-size:12px;color:var(--gray-1)"><strong style="color:#F87171">Legal risk:</strong> 0 labor law violations since deployment. Automated compliance engine active 24/7.</div>
+      </div>
+    </div>
+    <div class="roi-cards animate-3">
+      <div style="text-align:center;padding:12px 0 4px;">
+        <div class="label" style="margin-bottom:8px">ANNUAL FTE EQUIVALENT</div>
+        <div class="roi-hero-num">1.8</div>
+        <div class="roi-hero-label">FTEs SAVED / YEAR</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-num" style="color:var(--amber-light)">+14 hrs</div>
+        <div class="roi-card-label">NET PRODUCTIVITY · PER DAY · 73 AGENTS</div>
+      </div>
+      <div class="roi-card">
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <div class="roi-card-num" style="color:var(--lime-light)">100%</div>
+        </div>
+        <div class="roi-card-label">INTERNAL OWNERSHIP · ZERO EXTERNAL LICENSING</div>
+      </div>
+      <div class="roi-card">
+        <div class="roi-card-num" style="color:var(--teal-light)">0</div>
+        <div class="roi-card-label">LEGAL VIOLATIONS SINCE DEPLOYMENT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 09 — BEFORE/AFTER ══════════════════ -->
+<section class="slide" id="slide-09">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">09 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// FROM REACTIVE TO PROACTIVE · FROM MANUAL TO INTELLIGENT</div>
+    <h2 class="slide-title">Operational Transformation:<br><span>The Delta</span></h2>
+  </div>
+  <div class="ba-grid animate-2">
+    <div class="ba-col">
+      <div class="ba-header">
+        <span class="badge badge-red">MANUAL</span>
+        <span class="ba-label" style="color:#F87171">BEFORE</span>
+      </div>
+      <div class="ba-items">
+        <div class="ba-item"><span class="ba-item-icon">❌</span>Schedules managed in Excel with no real-time visibility. Active legal compliance risk across 4 countries.</div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span>Tickets assigned manually. Collisions, duplicated effort, and systemic cherry-picking.</div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span>Reports with 24–48h delay. Decisions made on yesterday's data.</div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span>Managers firefighting constantly. No data to lead with foresight.</div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span>Operational knowledge locked in 2–3 people's heads. High attrition risk.</div>
+        <div class="ba-item"><span class="ba-item-icon">❌</span>~2.5 FTEs absorbed in pure logistics that generates zero direct value.</div>
+      </div>
+    </div>
+    <div class="ba-divider">
+      <div class="ba-line"></div>
+      <div class="ba-arrow">→</div>
+      <div class="ba-line"></div>
+    </div>
+    <div class="ba-col after">
+      <div class="ba-header">
+        <span class="badge badge-lime"><div class="dot-live"></div>LIVE</span>
+        <span class="ba-label" style="color:var(--lime-light)">AFTER</span>
+      </div>
+      <div class="ba-items">
+        <div class="ba-item"><span class="ba-item-icon">✅</span>System manages schedules. Compliance engine active. Zero violations since deployment.</div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span>Tickets distributed automatically. Collision rate: 0%. Fair flow for all 73 agents.</div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span>Executive KPIs in real time. Management-ready view available in seconds.</div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span>Managers lead with data. They anticipate problems before they occur.</div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span>Operational knowledge codified in the system. Attrition risk eliminated.</div>
+        <div class="ba-item"><span class="ba-item-icon">✅</span>~1.8 FTEs freed. +14 hrs/day of agent productivity redirected to customers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 10 — ROADMAP ══════════════════ -->
+<section class="slide" id="slide-10">
+  <div class="grid-bg"></div>
+  <div class="slide-num-label">10 / 11</div>
+  <div class="slide-header animate-1">
+    <div class="slide-label">// THIS IS v1.0 · THE FOUNDATION IS IN PLACE</div>
+    <h2 class="slide-title">Built to Scale:<br><span>The Road Ahead</span></h2>
+  </div>
+  <div class="roadmap-timeline animate-2">
+    <div class="timeline-line"></div>
+    <div class="timeline-nodes">
+      <div class="timeline-node">
+        <div class="tl-dot current">🚀</div>
+        <div class="tl-info">
+          <div class="tl-version">v1.0 · NOW</div>
+          <div class="tl-title">VIP Ops Suite</div>
+          <div class="tl-items">
+            <div class="tl-item">VSP · VCS · VPT · VIC</div>
+            <div class="tl-item">73 agents · 4 countries</div>
+            <div class="tl-item" style="color:var(--amber)">● LIVE</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-node">
+        <div class="tl-dot future">🌍</div>
+        <div class="tl-info">
+          <div class="tl-version">v1.5 · Q3</div>
+          <div class="tl-title">Global Rollout</div>
+          <div class="tl-items">
+            <div class="tl-item">Bulgaria hub onboard</div>
+            <div class="tl-item">Panama hub onboard</div>
+            <div class="tl-item">Serbia hub onboard</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-node">
+        <div class="tl-dot future">🧠</div>
+        <div class="tl-info">
+          <div class="tl-version">v2.0 · Q4</div>
+          <div class="tl-title">VIC Continuous Learning</div>
+          <div class="tl-items">
+            <div class="tl-item">Agent usage feedback loops</div>
+            <div class="tl-item">Auto-protocol refinement</div>
+            <div class="tl-item">Adaptive knowledge base</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-node">
+        <div class="tl-dot future">🎓</div>
+        <div class="tl-info">
+          <div class="tl-version">v2.5 · 2026</div>
+          <div class="tl-title">Expert Injection</div>
+          <div class="tl-items">
+            <div class="tl-item">VIP CS specialists feed VIC</div>
+            <div class="tl-item">CS Trainers inject scenarios</div>
+            <div class="tl-item">New protocols → live instantly</div>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-node">
+        <div class="tl-dot future" style="border:1px solid rgba(101,163,13,0.4);background:rgba(101,163,13,0.06)">🏢</div>
+        <div class="tl-info">
+          <div class="tl-version">v3.0 · 2026+</div>
+          <div class="tl-title">Enterprise Platform</div>
+          <div class="tl-items">
+            <div class="tl-item">Multi-BU deployment</div>
+            <div class="tl-item">Corporate BI API</div>
+            <div class="tl-item">White-label potential</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scale-cards animate-3">
+    <div class="scale-card">
+      <div class="scale-icon">🌍</div>
+      <div class="scale-label">MORE HUBS<br>ZERO REDESIGN</div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-icon">🧠</div>
+      <div class="scale-label">VIC LEARNS<br>FROM EVERY CASE</div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-icon">🎓</div>
+      <div class="scale-label">EXPERTS KEEP<br>VIC SHARP</div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-icon">📡</div>
+      <div class="scale-label">API-READY<br>CORPORATE BI</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SLIDE 11 — CLOSE ══════════════════ -->
+<section class="slide" id="slide-11">
+  <div class="grid-bg"></div>
+  <div class="hero-orb close-orb-1"></div>
+  <div class="hero-orb close-orb-2"></div>
+  <div class="close-icons animate-1">
+    <div class="close-icon-wrap">
+      <div class="close-glow vsp-glow"></div>
+      <div class="hero-icon hero-icon-vsp eco-node-vsp" style="width:80px;height:80px;font-size:32px">📅</div>
+    </div>
+    <div class="close-icon-wrap">
+      <div class="close-glow vcs-glow"></div>
+      <div class="hero-icon hero-icon-vcs eco-node-vcs" style="width:80px;height:80px;font-size:32px">🔒</div>
+    </div>
+    <div class="close-icon-wrap">
+      <div class="close-glow vpt-glow"></div>
+      <div class="hero-icon hero-icon-vpt eco-node-vpt" style="width:80px;height:80px;font-size:32px">📊</div>
+    </div>
+    <div class="close-icon-wrap">
+      <div class="close-glow vic-glow"></div>
+      <div class="hero-icon hero-icon-vic eco-node-vic" style="width:80px;height:80px;font-size:32px">🧠</div>
+    </div>
+  </div>
+  <div class="close-metrics animate-2">
+    <div class="close-metric">
+      <div class="close-metric-num">73</div>
+      <div class="close-metric-label">AGENTS</div>
+    </div>
+    <div class="close-metric">
+      <div class="close-metric-num">4</div>
+      <div class="close-metric-label">COUNTRIES</div>
+    </div>
+    <div class="close-metric">
+      <div class="close-metric-num">4</div>
+      <div class="close-metric-label">MODULES</div>
+    </div>
+    <div class="close-metric">
+      <div class="close-metric-num">~1.8</div>
+      <div class="close-metric-label">FTEs SAVED</div>
+    </div>
+    <div class="close-metric">
+      <div class="close-metric-num">+14h</div>
+      <div class="close-metric-label">PRODUCTIVITY/DAY</div>
+    </div>
+  </div>
+  <h1 class="close-main-title animate-3">The VIP Ops Suite is Live.<br><span style="color:var(--amber-light)">What's Next?</span></h1>
+  <p class="close-sub animate-4">Built in-house. Owned by us. Already generating return. The numbers are real — not projections. The question is: how far do we scale it?</p>
+  <div class="close-final-tag animate-5">// Operational Excellence. Delivered.</div>
+</section>
+
+</div>
+
+<div class="nav">
+  <button class="prev" onclick="changeSlide(-1)">← PREV</button>
+  <div class="slide-counter" id="slideCounter">01 / 11</div>
+  <button class="next" onclick="changeSlide(1)">NEXT →</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let current = 0;
+let isAnimating = false;
+const dotsContainer = document.getElementById('dots');
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goTo(i));
+  dotsContainer.appendChild(dot);
+}
+function goTo(index) {
+  if (isAnimating || index === current) return;
+  isAnimating = true;
+  slides[current].classList.remove('active');
+  slides[current].classList.add('exit');
+  setTimeout(() => {
+    slides[current].classList.remove('exit');
+    current = index;
+    slides[current].classList.add('active');
+    updateUI();
+    setTimeout(() => { isAnimating = false; }, 550);
+  }, 300);
+}
+function changeSlide(dir) {
+  const next = Math.max(0, Math.min(totalSlides - 1, current + dir));
+  goTo(next);
+}
+function updateUI() {
+  const num = String(current + 1).padStart(2, '0');
+  document.getElementById('slideCounter').textContent = `${num} / ${String(totalSlides).padStart(2, '0')}`;
+  document.getElementById('progressBar').style.width = `${((current + 1) / totalSlides) * 100}%`;
+  document.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i === current); });
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+});
+let touchStartX = 0;
+document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) changeSlide(dx < 0 ? 1 : -1);
+});
+updateUI();
+</script>
+</body>
+</html>
